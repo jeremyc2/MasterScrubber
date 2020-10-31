@@ -1,0 +1,224 @@
+<style type="text/css">
+    #vid {
+        width: 832px;
+        visibility: hidden;
+    }
+    #canvas {
+        display: none;
+    }
+    .container {
+        position: relative;
+    }
+    #scrubber-frames::-webkit-scrollbar {
+        display: none;
+    }
+    #scrubber-frames {
+        display: flex;
+        flex-wrap: wrap;
+        width: 832px;
+        position: absolute;
+        top: 0px;
+        overflow-y: scroll;
+        height: -webkit-fill-available;
+        visibility: hidden;
+        background-color: black;
+    }
+    .visible {
+        visibility: visible !important;
+    }
+    #scrubber-frames > img {
+        border: solid transparent 6px;
+        user-select: none;
+    }
+    #scrubber-frames > img:hover {
+        border: solid transparent 6px;
+        user-select: none;
+        border: solid gold 6px !important;
+    }
+    .selectedFrame {
+        border: solid gold 6px !important;
+    }
+    #scrubber {
+        position: relative;
+        width: 832px;
+        height: 30px;
+        background-color: black;
+    }
+
+    #progress {
+        width: 0;
+        height: 30px;
+        background-color: red;
+    }
+    #toggleFrames {
+        position: relative;
+        left: 400;
+    }
+</style>
+
+<script>
+
+    var thumbnails = [];
+
+    document.addEventListener('keydown', keyListener);
+
+    function keyListener(e) {
+        if(e.code == "Space") {
+            if(document.onmouseup != null) {
+                document.onmouseup();
+                document.getElementById("toggleFrames").click();
+            }
+            e.preventDefault();
+        }
+        else if(e.code == "KeyC") {
+            var video = document.getElementById("vid");
+            if (video.hasAttribute("controls")) {
+                video.removeAttribute("controls"); 
+            } else {
+                video.setAttribute("controls","controls");  
+            }
+            e.preventDefault();
+        }
+    }
+
+    this.addEventListener("DOMContentLoaded", () => {
+        var video = document.getElementById("vid");
+        var scrubberFrames = document.getElementById("scrubber-frames");
+        var scrubber = document.getElementById("scrubber");
+        var progress = document.getElementById("progress");
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext('2d');
+        var i = 0;
+        var canScrub = false;
+
+        document.querySelector('input').addEventListener('change', function(e) {
+            video.src = URL.createObjectURL(this.files[0]);
+        });
+
+        video.addEventListener('loadeddata', function() {
+            this.currentTime = i;
+            canvas.width = this.videoWidth;
+            canvas.height = this.videoHeight;
+        });
+
+        video.addEventListener("timeupdate", videoTimeUpdateHandler);
+
+        function videoTimeUpdateHandler(e) {
+            var percent = video.currentTime / video.duration;
+            updateProgressWidth(percent);
+        }
+        
+        function scrub(e) {
+            if(canScrub) {
+                var percent = e.offsetX / scrubber.offsetWidth;
+                updateProgressWidth(percent);
+                var index = updateScrubberScroll(percent);
+                updateVideoTime(index);
+            }
+            e.preventDefault();
+        }
+
+        var canToggleScrubberFrames = true;
+        function toggleScrubberFrames(e) {
+            if(canToggleScrubberFrames) {
+                scrubberFrames.classList.toggle("visible");
+            }
+            canToggleScrubberFrames = !canToggleScrubberFrames;
+            e.preventDefault();
+        }
+
+        function scrubberDown(e) {
+            canScrub = true;
+            scrubberFrames.classList.add("visible");
+            scrub(e);
+            e.preventDefault();
+        }
+
+        function scrubberUp(e) {
+            canScrub = false;
+            scrubberFrames.classList.remove("visible");
+        }
+        
+        function updateProgressWidth(percent) {
+            progress.style.width = (percent * 100) + "%";
+        }
+
+        function updateVideoTime(index) {
+            video.currentTime = index * 5;
+        }
+        
+        function updateScrubberScroll(percent) {
+            var index = 0;
+            scrubberFrames.scrollTop = (scrubberFrames.scrollHeight - scrubberFrames.clientHeight) * percent;
+            if(thumbnails.length > 0) {
+                index = Math.floor((thumbnails.length - 1) * percent);
+                var thumbnail = document.querySelector(`#thumbnail${index}`);
+                var oldSelectedThumbnail = document.querySelector(".selectedFrame");
+                if(oldSelectedThumbnail != null)
+                    oldSelectedThumbnail.classList.remove("selectedFrame");
+                thumbnail.classList.add("selectedFrame");
+            }
+            return index;
+        }
+
+        video.addEventListener("seeked", generateThumbnail);
+
+        function generateThumbnail(callback) {
+            context.drawImage(video, 0, 0);
+            canvas.toBlob(blob => {
+                thumbnails.push(URL.createObjectURL(blob));
+
+                // when frame is captured increase, here by 5 seconds
+                i += 5;
+
+                // if we are not passed end, seek to next interval
+                if (i <= this.duration) {
+                    // this will trigger another seeked event
+                    this.currentTime = i;
+                }
+                else {
+                    // Done!, next action
+                    video.removeEventListener("seeked", generateThumbnail);
+                    scrubber.addEventListener("mousemove", scrub);
+                    scrubber.addEventListener("mousedown", scrubberDown);
+                    document.getElementById("toggleFrames")
+                        .addEventListener("click", toggleScrubberFrames);
+                    document.onmouseup = scrubberUp;
+
+                    this.currentTime = 0;
+
+                    // Generate Thumbnails
+                    var index = 0;
+                    thumbnails.forEach(thumbnailSrc => {
+                        var thumbnail = document.createElement("img");
+                        thumbnail.setAttribute("data-index", index);
+                        thumbnail.id = `thumbnail${index++}`;
+                        thumbnail.src = thumbnailSrc;
+                        thumbnail.width = (video.clientWidth / 3) - 12;
+                        thumbnail.height = (video.clientHeight / 3) - 12;
+
+                        thumbnail.onmouseup = function(e) {
+                            updateVideoTime(parseInt(this.getAttribute("data-index")));
+                        };
+
+                        scrubberFrames.appendChild(thumbnail);
+                    });
+                    video.style.visibility = "visible";
+                }
+
+            }, 'image/jpeg');
+        }
+
+    });
+    
+</script>
+
+<input type="file" accept="video/*" /><button id="toggleFrames">Show/Hide Frames</button><br><br>
+<div class="container">
+    <video id="vid"></video>
+    <canvas id="canvas"></canvas>
+    <div id="scrubber-frames"></div>
+    <div id="scrubber">
+        <div id="progress"></div>
+    </div>
+</div>
