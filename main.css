@@ -1,0 +1,69 @@
+/* Main */
+body {
+    background-color: rgb(30, 30, 30);
+}
+.container {
+    position: absolute;
+    min-width: 500px;
+    max-width: 100vw;
+    max-height: calc(100vh - 130px);
+    width: fit-content;
+    height: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#vid {
+    max-width: 100%;
+    max-height: calc(100vh - 130px);
+    visibility: hidden;
+}
+.visible {
+    visibility: visible !important;
+}
+
+/* Scrubber Frames */
+#frames {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 0px;
+    overflow-y: scroll;
+    height: -webkit-fill-available;
+    visibility: hidden;
+    background-color: black;
+}
+#frames::-webkit-scrollbar {
+    display: none;
+}
+#frames > img {
+    border: solid transparent 6px;
+    user-select: none;
+}
+#frames > img:hover {
+    border: solid gold 6px !important;
+}
+
+/* Video Controls */
+input {
+    position: absolute;
+    left: 0;  
+    bottom: 103%;
+
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+#toggleFrames {
+    position: absolute;
+    right: 0;
+    bottom: 103%;
+
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Hidden */
+#canvas {
+    display: none;
+}
