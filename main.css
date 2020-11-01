@@ -42,7 +42,7 @@ progress::-webkit-progress-value {
     position: absolute;
     min-width: 500px;
     max-width: 100vw;
-    max-height: calc(100vh - 130px);
+    max-height: calc(100vh - 50px);
     width: fit-content;
     height: fit-content;
     top: 50;
@@ -51,7 +51,7 @@ progress::-webkit-progress-value {
 }
 #vid {
     max-width: 100%;
-    max-height: calc(100vh - 130px);
+    max-height: calc(100vh - 50px);
     visibility: hidden;
 }
 .visible {
