@@ -31,6 +31,10 @@ function toggleFrames() {
     frames.classList.toggle("visible");
 }
 
+function framesOn() {
+    frames.classList.add("visible");
+}
+
 this.addEventListener("DOMContentLoaded", () => {
     input = document.querySelector('input');
     video = document.getElementById("vid");
@@ -47,7 +51,7 @@ this.addEventListener("DOMContentLoaded", () => {
         video.src = URL.createObjectURL(this.files[0]);
     });
 
-    playbackSpeedSlider.addEventListener('input', function(e) {
+    playbackSpeedSlider.addEventListener('input', function() {
         video.playbackRate = this.value;
     });
 
@@ -103,7 +107,7 @@ this.addEventListener("DOMContentLoaded", () => {
                     frames.appendChild(thumbnail);
                 });
                 video.classList.add("visible");
-                toggleFrames();
+                framesOn();
 
                 document.addEventListener('keydown', keyListener);
                 toggleControlsButton.addEventListener("click", toggleControls);
