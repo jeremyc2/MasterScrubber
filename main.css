@@ -2,6 +2,40 @@
 body {
     background-color: rgb(30, 30, 30);
 }
+progress {
+    width: calc(100% - 16px);
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    -webkit-appearance: none;
+    appearance: none;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    visibility: hidden;
+
+}
+progress::-webkit-progress-bar {
+    background-color: #eee;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.75) inset;
+    border-radius: 10px;
+}
+progress::-webkit-progress-value {
+    background-image:
+         -webkit-linear-gradient(-45deg, 
+                                 transparent 33%, rgba(0, 0, 0, .1) 33%, 
+                                 rgba(0,0, 0, .1) 66%, transparent 66%),
+         -webkit-linear-gradient(top, 
+                                 rgba(255, 255, 255, .25), 
+                                 rgba(0, 0, 0, .25)),
+         -webkit-linear-gradient(left, #09c, #f44);
+  
+    border-radius: 10px;
+    background-size: 95px 53px, 100% 100%, 100% 100%;
+
+}
 .container {
     display: flex;
     justify-content: center;

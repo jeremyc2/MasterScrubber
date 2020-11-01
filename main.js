@@ -1,4 +1,5 @@
 var input,
+    progress,
     video,
     frames,
     playbackSpeedSlider,
@@ -37,6 +38,7 @@ function framesOn() {
 
 this.addEventListener("DOMContentLoaded", () => {
     input = document.querySelector('input');
+    progress = document.querySelector('progress');
     video = document.getElementById("vid");
     frames = document.getElementById("frames");
     playbackSpeedSlider = document.getElementById("playbackSpeed");
@@ -56,6 +58,7 @@ this.addEventListener("DOMContentLoaded", () => {
     });
 
     video.addEventListener('loadeddata', function() {
+        progress.classList.add("visible");
         this.currentTime = i;
         canvas.width = this.videoWidth;
         canvas.height = this.videoHeight;
@@ -64,8 +67,8 @@ this.addEventListener("DOMContentLoaded", () => {
     video.addEventListener("timeupdate", onTimeUpdate);
 
     function onTimeUpdate() {
-        var percent = video.currentTime / video.duration;
-        console.log(`${(percent * 100).toFixed(2)}%`);
+        var percent = (video.currentTime / video.duration) * 100;
+        progress.value = percent;
     }
 
     function updateVideoTime(index) {
@@ -89,6 +92,7 @@ this.addEventListener("DOMContentLoaded", () => {
             }
             else {
                 // Done!, next action
+                progress.classList.remove("visible");
                 video.removeEventListener("timeupdate", onTimeUpdate);
                 video.removeEventListener("seeked", generateThumbnail);
 
