@@ -61,10 +61,12 @@ this.addEventListener("DOMContentLoaded", () => {
         canvas.height = this.videoHeight;
     });
 
-    video.addEventListener("timeupdate", () => {
+    video.addEventListener("timeupdate", onTimeUpdate);
+
+    function onTimeUpdate() {
         var percent = video.currentTime / video.duration;
         console.log(`${(percent * 100).toFixed(2)}%`);
-    });
+    }
 
     function updateVideoTime(index) {
         video.currentTime = index * 5;
@@ -87,6 +89,7 @@ this.addEventListener("DOMContentLoaded", () => {
             }
             else {
                 // Done!, next action
+                video.removeEventListener("timeupdate", onTimeUpdate);
                 video.removeEventListener("seeked", generateThumbnail);
 
                 this.currentTime = 0;
@@ -110,6 +113,10 @@ this.addEventListener("DOMContentLoaded", () => {
                 framesOn();
 
                 document.addEventListener('keydown', keyListener);
+
+                toggleControlsButton.disabled = false;
+                toggleFramesButton.disabled = false;
+
                 toggleControlsButton.addEventListener("click", toggleControls);
                 toggleFramesButton.addEventListener("click", toggleFrames);
 
