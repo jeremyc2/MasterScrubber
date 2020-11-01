@@ -1,6 +1,7 @@
 var input,
     video,
     frames,
+    playbackSpeedSlider,
     toggleFramesButton,
     canvas,
     context,
@@ -29,6 +30,7 @@ this.addEventListener("DOMContentLoaded", () => {
     input = document.querySelector('input');
     video = document.getElementById("vid");
     frames = document.getElementById("frames");
+    playbackSpeedSlider = document.getElementById("playbackSpeed");
     toggleFramesButton = document.getElementById("toggleFrames");
     canvas = document.getElementById("canvas");
     context = canvas.getContext('2d');
@@ -37,6 +39,10 @@ this.addEventListener("DOMContentLoaded", () => {
 
     input.addEventListener('change', function() {
         video.src = URL.createObjectURL(this.files[0]);
+    });
+
+    playbackSpeedSlider.addEventListener('input', function(e) {
+        video.playbackRate = this.value;
     });
 
     video.addEventListener('loadeddata', function() {
