@@ -3,7 +3,25 @@
 <div id="controls">
     <input type="file" accept="video/*" />
     <span>
-        <input name="playbackSpeed" id="playbackSpeed" type="range" min="1" max="16" value="1" step="1" class="slider">
+        <input name="playbackSpeed" id="playbackSpeed" type="range" list="tickmarks" min="1" max="16" value="1" step="1">
+        <datalist id="tickmarks">
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+            <option value="7"></option>
+            <option value="8"></option>
+            <option value="9"></option>
+            <option value="10"></option>
+            <option value="11"></option>
+            <option value="12"></option>
+            <option value="13"></option>
+            <option value="14"></option>
+            <option value="15"></option>
+            <option value="16"></option>
+          </datalist>
         <label for="playbackSpeed">Playback Speed</label>
     </span>
     <button id="toggleFrames">Show/Hide Frames</button>

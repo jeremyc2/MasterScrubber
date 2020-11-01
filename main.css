@@ -67,11 +67,10 @@ span {
 #playbackSpeed {
     padding: 0px;
     position: relative;
-    top: 5px;
 }
 label {
     position: relative;
-    top: 2px;
+    top: -3px;
 }
 
 /* Hidden */
