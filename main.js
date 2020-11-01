@@ -1,3 +1,4 @@
+// TODO: Add autoscroll frames
 var input,
     progress,
     video,
