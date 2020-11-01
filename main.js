@@ -50,6 +50,9 @@ this.addEventListener("DOMContentLoaded", () => {
     var i = 0;
 
     input.addEventListener('change', function() {
+
+        // TODO: Reset to start conditions
+
         video.src = URL.createObjectURL(this.files[0]);
     });
 
