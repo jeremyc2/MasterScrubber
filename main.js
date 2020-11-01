@@ -36,6 +36,10 @@ function framesOn() {
     frames.classList.add("visible");
 }
 
+function framesOff() {
+    frames.classList.remove("visible");
+}
+
 this.addEventListener("DOMContentLoaded", () => {
     input = document.querySelector('input');
     progress = document.querySelector('progress');
@@ -47,11 +51,20 @@ this.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("canvas");
     context = canvas.getContext('2d');
 
-    var i = 0;
+    var i;
 
     input.addEventListener('change', function() {
 
-        // TODO: Reset to start conditions
+        i = 0;
+
+        document.removeEventListener('keydown', keyListener);
+        toggleControlsButton.disabled = true;
+        toggleFramesButton.disabled = true;
+
+        framesOff();
+        frames.innerHTML = "";
+        thumbnails = [];
+        video.classList.remove("visible");
 
         video.src = URL.createObjectURL(this.files[0]);
     });
@@ -60,14 +73,19 @@ this.addEventListener("DOMContentLoaded", () => {
         video.playbackRate = this.value;
     });
 
-    video.addEventListener('loadeddata', function() {
+    toggleControlsButton.addEventListener("click", toggleControls);
+    toggleFramesButton.addEventListener("click", toggleFrames);
+
+    video.addEventListener('loadedmetadata', function() {
         progress.classList.add("visible");
         this.currentTime = i;
         canvas.width = this.videoWidth;
         canvas.height = this.videoHeight;
-    });
 
-    video.addEventListener("timeupdate", onTimeUpdate);
+        this.addEventListener("timeupdate", onTimeUpdate);
+        this.addEventListener("seeked", generateThumbnail);
+
+    });
 
     function onTimeUpdate() {
         var percent = (video.currentTime / video.duration) * 100;
@@ -123,9 +141,6 @@ this.addEventListener("DOMContentLoaded", () => {
 
                 toggleControlsButton.disabled = false;
                 toggleFramesButton.disabled = false;
-
-                toggleControlsButton.addEventListener("click", toggleControls);
-                toggleFramesButton.addEventListener("click", toggleFrames);
 
             }
 
