@@ -9,9 +9,9 @@ body {
     max-height: calc(100vh - 130px);
     width: fit-content;
     height: fit-content;
-    top: 50%;
+    top: 50;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 }
 #vid {
     max-width: 100%;
@@ -39,28 +39,37 @@ body {
 #frames > img {
     border: solid transparent 6px;
     user-select: none;
+    width: calc(100% / 3 - 12px);
+    height: calc(100% / 3 - 12px);
 }
 #frames > img:hover {
     border: solid gold 6px !important;
 }
 
 /* Video Controls */
-input {
-    position: absolute;
-    left: 0;  
-    bottom: 103%;
-
-    background-color: white;
+#controls {
+    display: flex;
+    justify-content: space-evenly;
+}
+#controls * {
     padding: 5px;
     border-radius: 5px;
 }
-#toggleFrames {
-    position: absolute;
-    right: 0;
-    bottom: 103%;
-
-    padding: 5px;
-    border-radius: 5px;
+input {
+    background-color: white;
+}
+span {
+    padding: 0px !important;
+    background-color: white;
+}
+#playbackSpeed {
+    padding: 0px;
+    position: relative;
+    top: 5px;
+}
+label {
+    position: relative;
+    top: 2px;
 }
 
 /* Hidden */

@@ -82,8 +82,6 @@ this.addEventListener("DOMContentLoaded", () => {
                     thumbnail.setAttribute("data-index", index);
                     thumbnail.id = `thumbnail${index++}`;
                     thumbnail.src = thumbnailSrc;
-                    thumbnail.width = (video.clientWidth / 3) - 12;
-                    thumbnail.height = (video.clientHeight / 3) - 12;
 
                     thumbnail.addEventListener("click", function() {
                         updateVideoTime(parseInt(this.getAttribute("data-index")));

@@ -1,8 +1,14 @@
 <link rel="stylesheet" href="main.css">
 <script src="main.js"></script>
-<div class="container">
+<div id="controls">
     <input type="file" accept="video/*" />
+    <span>
+        <input name="playbackSpeed" id="playbackSpeed" type="range" min="1" max="16" value="1" step="1" class="slider">
+        <label for="playbackSpeed">Playback Speed</label>
+    </span>
     <button id="toggleFrames">Show/Hide Frames</button>
+</div>
+<div class="container">
     <video id="vid" controls></video>
     <canvas id="canvas"></canvas>
     <div id="frames"></div>
