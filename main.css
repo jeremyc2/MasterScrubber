@@ -51,11 +51,13 @@ body {
 /* Video Controls */
 #controls {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 #controls * {
     padding: 5px;
     border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 input {
     background-color: white;

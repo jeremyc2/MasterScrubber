@@ -2,6 +2,7 @@ var input,
     video,
     frames,
     playbackSpeedSlider,
+    toggleControlsButton,
     toggleFramesButton,
     canvas,
     context,
@@ -13,12 +14,16 @@ function keyListener(e) {
         e.preventDefault();
     }
     else if(e.code == "KeyC") {
-        if (video.hasAttribute("controls")) {
-            video.removeAttribute("controls"); 
-        } else {
-            video.setAttribute("controls","controls");  
-        }
+        toggleControls();
         e.preventDefault();
+    }
+}
+
+function toggleControls() {
+    if (video.hasAttribute("controls")) {
+        video.removeAttribute("controls"); 
+    } else {
+        video.setAttribute("controls","controls");  
     }
 }
 
@@ -31,6 +36,7 @@ this.addEventListener("DOMContentLoaded", () => {
     video = document.getElementById("vid");
     frames = document.getElementById("frames");
     playbackSpeedSlider = document.getElementById("playbackSpeed");
+    toggleControlsButton = document.getElementById("toggleControls");
     toggleFramesButton = document.getElementById("toggleFrames");
     canvas = document.getElementById("canvas");
     context = canvas.getContext('2d');
@@ -100,6 +106,7 @@ this.addEventListener("DOMContentLoaded", () => {
                 toggleFrames();
 
                 document.addEventListener('keydown', keyListener);
+                toggleControlsButton.addEventListener("click", toggleControls);
                 toggleFramesButton.addEventListener("click", toggleFrames);
 
             }
