@@ -2,6 +2,15 @@
 body {
     background-color: rgb(30, 30, 30);
 }
+button {
+    background-color: #226fbe;
+    color: #fff;
+    border: none;
+}
+button:disabled {
+    color: #c0c0c0;
+    background-color: #ffffff;
+}
 /* The emerging W3C standard
   that is currently Firefox-only */
 * {
@@ -49,7 +58,7 @@ progress::-webkit-progress-value {
          -webkit-linear-gradient(top, 
                                  rgba(255, 255, 255, .25), 
                                  rgba(0, 0, 0, .25));
-    background-color: #4390BC;
+    background-color: #226fbe;
     border-radius: 10px;
     background-size: 95px 53px, 100% 100%;
 
@@ -113,6 +122,7 @@ progress::-webkit-progress-value {
     border-radius: 5px;
     margin-left: 10px;
     margin-right: 10px;
+    outline: none;
 }
 input {
     background-color: white;
