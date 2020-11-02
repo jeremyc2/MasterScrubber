@@ -32,7 +32,6 @@ function downloadCurrentFrame() {
         var a = document.getElementById("download");
         var link = URL.createObjectURL(blob);
         a.href = link;
-        a.download = link;
         a.click();
     });
 }
