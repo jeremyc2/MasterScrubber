@@ -1,6 +1,4 @@
 // TODO: Add autoscroll frames
-// TODO: Add download current frame button
-// TODO: Scroll top controls with overflow
 var input,
     progress,
     video,
@@ -8,6 +6,7 @@ var input,
     playbackSpeedSlider,
     toggleControlsButton,
     toggleFramesButton,
+    downloadFrameButton,
     canvas,
     context,
     thumbnails = [];
@@ -17,10 +16,25 @@ function keyListener(e) {
         toggleFrames();
         e.preventDefault();
     }
+    else if(e.code == "KeyD") {
+        downloadCurrentFrame();
+        e.preventDefault();
+    }
     else if(e.code == "KeyC") {
         toggleControls();
         e.preventDefault();
     }
+}
+
+function downloadCurrentFrame() {
+    context.drawImage(video, 0, 0);
+    canvas.toBlob(blob => {
+        var a = document.getElementById("download");
+        var link = URL.createObjectURL(blob);
+        a.href = link;
+        a.download = link;
+        a.click();
+    });
 }
 
 function toggleControls() {
@@ -51,6 +65,7 @@ this.addEventListener("DOMContentLoaded", () => {
     playbackSpeedSlider = document.getElementById("playbackSpeed");
     toggleControlsButton = document.getElementById("toggleControls");
     toggleFramesButton = document.getElementById("toggleFrames");
+    downloadFrameButton = document.getElementById("downloadFrame");
     canvas = document.getElementById("canvas");
     context = canvas.getContext('2d');
 
@@ -63,6 +78,7 @@ this.addEventListener("DOMContentLoaded", () => {
         document.removeEventListener('keydown', keyListener);
         toggleControlsButton.disabled = true;
         toggleFramesButton.disabled = true;
+        downloadFrameButton.disabled = true;
 
         framesOff();
         frames.innerHTML = "";
@@ -78,6 +94,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
     toggleControlsButton.addEventListener("click", toggleControls);
     toggleFramesButton.addEventListener("click", toggleFrames);
+    downloadFrameButton.addEventListener("click", downloadCurrentFrame);
 
     video.addEventListener('loadedmetadata', function() {
         progress.classList.add("visible");
@@ -144,6 +161,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
                 toggleControlsButton.disabled = false;
                 toggleFramesButton.disabled = false;
+                downloadFrameButton.disabled = false;
 
             }
 

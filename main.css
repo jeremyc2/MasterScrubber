@@ -2,6 +2,25 @@
 body {
     background-color: rgb(30, 30, 30);
 }
+/* The emerging W3C standard
+  that is currently Firefox-only */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: white black;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 20px;
+  border: 3px solid #1E1E1E;;
+}
 progress {
     width: calc(100% - 16px);
     height: 50px;
@@ -29,11 +48,10 @@ progress::-webkit-progress-value {
                                  rgba(0,0, 0, .1) 66%, transparent 66%),
          -webkit-linear-gradient(top, 
                                  rgba(255, 255, 255, .25), 
-                                 rgba(0, 0, 0, .25)),
-         -webkit-linear-gradient(left, #09c, #f44);
-  
+                                 rgba(0, 0, 0, .25));
+    background-color: #4390BC;
     border-radius: 10px;
-    background-size: 95px 53px, 100% 100%, 100% 100%;
+    background-size: 95px 53px, 100% 100%;
 
 }
 .container {
@@ -85,7 +103,10 @@ progress::-webkit-progress-value {
 /* Video Controls */
 #controls {
     display: flex;
-    justify-content: center;
+    white-space: nowrap;
+    overflow-x: scroll;
+    max-width: fit-content;
+    margin: auto;
 }
 #controls * {
     padding: 5px;
