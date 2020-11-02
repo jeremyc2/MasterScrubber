@@ -1,4 +1,6 @@
 // TODO: Add autoscroll frames
+// TODO: Add download current frame button
+// TODO: Scroll top controls with overflow
 var input,
     progress,
     video,
