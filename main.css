@@ -2,11 +2,6 @@
 body {
     background-color: rgb(30, 30, 30);
 }
-button {
-    background-color: #226fbe;
-    color: #fff;
-    border: none;
-}
 button:disabled {
     color: #c0c0c0;
     background-color: #ffffff;
@@ -103,6 +98,9 @@ progress::-webkit-progress-value {
     margin-left: 10px;
     margin-right: 10px;
     outline: none;
+    background-color: #226fbe;
+    color: #fff;
+    border: none;
 }
 input {
     background-color: white;
