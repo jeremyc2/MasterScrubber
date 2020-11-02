@@ -1,4 +1,4 @@
-// TODO: Add autoscroll to frames, icons for buttons (description on hover) (custom style), get rid of controls scrollbar & make the overflow hidden.
+// TODO: Add autoscroll to frames, icons for buttons (description on hover)
 var input,
     progress,
     video,
