@@ -3,8 +3,8 @@ body {
     background-color: rgb(30, 30, 30);
 }
 button:disabled {
-    color: #c0c0c0;
-    background-color: #ffffff;
+    color: #c0c0c0 !important;
+    background-color: #ffffff !important;
 }
 progress {
     width: calc(100% - 16px);
@@ -102,8 +102,8 @@ progress::-webkit-progress-value {
     color: #fff;
     border: none;
 }
-input {
-    background-color: white;
+#controls button:hover:not([disabled]), #controls input:hover {
+    background-color: #174c82 !important;
 }
 span {
     padding: 0px !important;
