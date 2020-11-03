@@ -109,6 +109,7 @@ progress::-webkit-progress-value {
 span {
     padding: 0px !important;
     background-color: white;
+    min-width: auto !important;
 }
 #playbackSpeed {
     padding: 0px;
