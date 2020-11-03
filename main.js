@@ -45,13 +45,13 @@ function toggleControls() {
 }
 
 function toggleFrames() {
-    frames.classList.toggle("visible");
+    if(frames.classList.contains("visible")) {
+        framesOff();
+    } else {
+        frames.classList.add("visible");
+        frames.children[0].focus();
+    }
 }
-
-function framesOn() {
-    frames.classList.add("visible");
-}
-
 function framesOff() {
     frames.classList.remove("visible");
 }
@@ -143,6 +143,7 @@ this.addEventListener("DOMContentLoaded", () => {
                 thumbnails.forEach(thumbnailSrc => {
                     var thumbnail = document.createElement("img");
                     thumbnail.setAttribute("data-index", index);
+                    thumbnail.setAttribute("tabindex", -1);
                     thumbnail.id = `thumbnail${index++}`;
                     thumbnail.src = thumbnailSrc;
 
@@ -154,7 +155,6 @@ this.addEventListener("DOMContentLoaded", () => {
                     frames.appendChild(thumbnail);
                 });
                 video.classList.add("visible");
-                framesOn();
 
                 document.addEventListener('keydown', keyListener);
 
