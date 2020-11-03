@@ -101,6 +101,7 @@ progress::-webkit-progress-value {
     background-color: #226fbe;
     color: #fff;
     border: none;
+    min-width: 31.33px;
 }
 #controls button:hover:not([disabled]), #controls input:hover {
     background-color: #174c82 !important;
@@ -116,6 +117,16 @@ span {
 label {
     position: relative;
     top: -3px;
+}
+#toggleFrames {
+    background-image: url("data:image/svg+xml,%3Csvg width='170' height='170' viewBox='0 0 170 170' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='50' height='50' fill='white'/%3E%3Crect y='60' width='50' height='50' fill='white'/%3E%3Crect y='120' width='50' height='50' fill='white'/%3E%3Crect x='60' y='120' width='50' height='50' fill='white'/%3E%3Crect x='120' y='120' width='50' height='50' fill='white'/%3E%3Crect x='60' y='60' width='50' height='50' fill='white'/%3E%3Crect x='120' y='60' width='50' height='50' fill='white'/%3E%3Crect x='60' width='50' height='50' fill='white'/%3E%3Crect x='120' width='50' height='50' fill='white'/%3E%3C/svg%3E%0A");    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#toggleFrames:disabled {
+    background-image: url("data:image/svg+xml,%3Csvg width='170' height='170' viewBox='0 0 170 170' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='50' height='50' fill='%23c0c0c0'/%3E%3Crect y='60' width='50' height='50' fill='%23c0c0c0'/%3E%3Crect y='120' width='50' height='50' fill='%23c0c0c0'/%3E%3Crect x='60' y='120' width='50' height='50' fill='%23c0c0c0'/%3E%3Crect x='120' y='120' width='50' height='50' fill='%23c0c0c0'/%3E%3Crect x='60' y='60' width='50' height='50' fill='%23c0c0c0'/%3E%3Crect x='120' y='60' width='50' height='50' fill='%23c0c0c0'/%3E%3Crect x='60' width='50' height='50' fill='%23c0c0c0'/%3E%3Crect x='120' width='50' height='50' fill='%23c0c0c0'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* Hidden */
