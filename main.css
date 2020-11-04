@@ -146,6 +146,35 @@ label {
 #toggleControls:disabled {
     background-image: url(./settings-disabled.svg);
 }
+.tooltip {
+    position: relative;
+} 
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color: black !important;
+    text-align: center;
+    border-radius: 6px !important;
+    padding: 5px 0 !important;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 50%;
+    margin-left: -75px !important;
+}
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
 /* Hidden */
 #canvas {
     display: none;
