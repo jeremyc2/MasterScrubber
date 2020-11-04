@@ -109,6 +109,10 @@ this.addEventListener("DOMContentLoaded", () => {
     function onTimeUpdate() {
         var percent = (video.currentTime / video.duration) * 100;
         progress.value = percent;
+
+        // TODO: Scroll frames to correct height. You might need these:
+        //      video.currentTime
+        //      frames.children[0].getBoundingClientRect().height
     }
 
     function updateVideoTime(index) {
