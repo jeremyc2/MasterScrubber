@@ -150,7 +150,7 @@ label {
     position: relative;
 } 
 .tooltip .tooltiptext {
-    visibility: hidden;
+    display: none;
     width: 150px;
     background-color: black !important;
     text-align: center;
@@ -173,7 +173,7 @@ label {
     border-color: transparent transparent black transparent;
 }
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+    display: block;
 }
 /* Hidden */
 #canvas {
