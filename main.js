@@ -111,7 +111,6 @@ this.addEventListener("DOMContentLoaded", () => {
         progress.value = percent;
 
         // TODO: Scroll frames to correct height. You might need these:
-        //      video.currentTime
         //      frames.children[0].getBoundingClientRect().height
     }
 
