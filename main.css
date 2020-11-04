@@ -121,14 +121,12 @@ label {
 }
 #toggleFrames {
     background-image: url(./toggleframes.svg);
-    background-size: 18px;
+    background-size: 20px;
     background-repeat: no-repeat;
     background-position: center;
 }
 #toggleFrames:disabled {
     background-image: url(./toggleframes-disabled.svg);
-    background-repeat: no-repeat;
-    background-position: center;
 }
 #downloadFrame {
     background-image: url(./download.svg);
@@ -138,19 +136,15 @@ label {
 }
 #downloadFrame:disabled {
     background-image: url(./download-disabled.svg);
-    background-repeat: no-repeat;
-    background-position: center;
 }
 #toggleControls {
     background-image: url(./settings.svg);
-    background-size: 18px;  
+    background-size: 22px;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: right 5px bottom 3px;
 }
 #toggleControls:disabled {
     background-image: url(./settings-disabled.svg);
-    background-repeat: no-repeat;
-    background-position: center;
 }
 /* Hidden */
 #canvas {
