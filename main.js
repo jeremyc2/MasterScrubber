@@ -1,4 +1,4 @@
-// TODO: Add autoscroll to frames, icons for buttons (description on hover)
+// TODO: Add autoscroll to frames
 var input,
     progress,
     video,
