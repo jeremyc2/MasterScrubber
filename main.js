@@ -12,16 +12,22 @@ var input,
     thumbnails = [];
 
 function keyListener(e) {
-    if(e.code == "KeyF") {
-        toggleFrames();
-        e.preventDefault();
+    if(!isLoading) {
+        if(e.code == "KeyF") {
+            toggleFrames();
+            e.preventDefault();
+        }
+        else if(e.code == "KeyD") {
+            downloadCurrentFrame();
+            e.preventDefault();
+        }
+        else if(e.code == "KeyC") {
+            toggleControls();
+            e.preventDefault();
+        }
     }
-    else if(e.code == "KeyD") {
-        downloadCurrentFrame();
-        e.preventDefault();
-    }
-    else if(e.code == "KeyC") {
-        toggleControls();
+    if(e.code == "KeyL") {
+        document.body.classList.toggle("light");
         e.preventDefault();
     }
 }
@@ -81,7 +87,6 @@ this.addEventListener("DOMContentLoaded", () => {
 
         i = 0;
 
-        document.removeEventListener('keydown', keyListener);
         toggleControlsButton.disabled = true;
         toggleFramesButton.disabled = true;
         downloadFrameButton.disabled = true;
@@ -97,6 +102,8 @@ this.addEventListener("DOMContentLoaded", () => {
     playbackSpeedSlider.addEventListener('input', function() {
         video.playbackRate = this.value;
     });
+
+    document.addEventListener('keydown', keyListener);
 
     toggleControlsButton.addEventListener("click", toggleControls);
     toggleFramesButton.addEventListener("click", toggleFrames);
@@ -170,8 +177,6 @@ this.addEventListener("DOMContentLoaded", () => {
                     frames.appendChild(thumbnail);
                 });
                 video.classList.add("visible");
-
-                document.addEventListener('keydown', keyListener);
 
                 toggleControlsButton.disabled = false;
                 toggleFramesButton.disabled = false;
