@@ -112,7 +112,7 @@ this.addEventListener("DOMContentLoaded", () => {
         progress.value = percent;
 
         if(!isLoading) {
-            var frameNumber = Math.floor(video.currentTime / 5);
+            var frameNumber = Math.floor(video.currentTime / (5 * 3));
             frames.scrollTop = frameNumber * 
                 frames.children[0].getBoundingClientRect().height;
         }
