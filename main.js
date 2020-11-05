@@ -1,5 +1,6 @@
 // TODO: Add autoscroll to frames
 var input,
+    isLoading = true,
     progress,
     video,
     frames,
@@ -110,8 +111,12 @@ this.addEventListener("DOMContentLoaded", () => {
         var percent = (video.currentTime / video.duration) * 100;
         progress.value = percent;
 
-        // TODO: Scroll frames to correct height. You might need these:
-        //      frames.children[0].getBoundingClientRect().height
+        if(!isLoading) {
+            var frameNumber = Math.floor(video.currentTime / 5);
+            frames.scrollTop = frameNumber * 
+                frames.children[0].getBoundingClientRect().height;
+        }
+
     }
 
     function updateVideoTime(index) {
@@ -136,7 +141,9 @@ this.addEventListener("DOMContentLoaded", () => {
             else {
                 // Done!, next action
                 progress.classList.remove("visible");
-                video.removeEventListener("timeupdate", onTimeUpdate);
+
+                isLoading = false;
+
                 video.removeEventListener("seeked", generateThumbnail);
 
                 this.currentTime = 0;
