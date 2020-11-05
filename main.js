@@ -1,4 +1,3 @@
-// TODO: Add autoscroll to frames
 var input,
     isLoading = true,
     progress,
@@ -50,11 +49,18 @@ function toggleFrames() {
         framesOff();
     } else {
         frames.classList.add("visible");
-        frames.children[0].focus();
+        focusCurrentFrame();
     }
 }
 function framesOff() {
     frames.classList.remove("visible");
+}
+
+function focusCurrentFrame(){
+    var frameNumber = Math.floor(video.currentTime / 5);
+    document.querySelector(`#thumbnail${frameNumber}`).focus();
+    frames.scrollTop = Math.floor(frameNumber / 3) * 
+                frames.children[0].getBoundingClientRect().height;
 }
 
 this.addEventListener("DOMContentLoaded", () => {
@@ -113,10 +119,7 @@ this.addEventListener("DOMContentLoaded", () => {
             var percent = (video.currentTime / video.duration) * 100;
             progress.value = percent;
         } else{
-            var frameNumber = Math.floor(video.currentTime / 5);
-            document.querySelector(`#thumbnail${frameNumber}`).focus();
-            frames.scrollTop = Math.floor(frameNumber / 3) * 
-                frames.children[0].getBoundingClientRect().height;
+            focusCurrentFrame();
         }
 
     }
