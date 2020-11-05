@@ -108,10 +108,11 @@ this.addEventListener("DOMContentLoaded", () => {
     });
 
     function onTimeUpdate() {
-        var percent = (video.currentTime / video.duration) * 100;
-        progress.value = percent;
 
-        if(!isLoading) {
+        if(isLoading) {
+            var percent = (video.currentTime / video.duration) * 100;
+            progress.value = percent;
+        } else{
             var frameNumber = Math.floor(video.currentTime / (5 * 3));
             frames.scrollTop = frameNumber * 
                 frames.children[0].getBoundingClientRect().height;
