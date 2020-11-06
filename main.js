@@ -123,7 +123,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
     frames.addEventListener("scroll", function() {
         framesProgressBar.style.width = frames.getBoundingClientRect().width * 
-            (this.scrollTop / this.scrollHeight);
+            (this.scrollTop / this.scrollHeight) * 1.06;
     });
 
     function onTimeUpdate() {
