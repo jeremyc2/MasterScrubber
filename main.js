@@ -3,6 +3,7 @@ var input,
     progress,
     video,
     frames,
+    framesProgressBar,
     playbackSpeedSlider,
     toggleControlsButton,
     toggleFramesButton,
@@ -66,7 +67,7 @@ function focusCurrentFrame(){
     var frameNumber = Math.floor(video.currentTime / 5);
     document.querySelector(`#thumbnail${frameNumber}`).focus();
     frames.scrollTop = Math.floor(frameNumber / 3) * 
-                frames.children[0].getBoundingClientRect().height;
+                document.querySelector("#thumbnail0").getBoundingClientRect().height;
 }
 
 this.addEventListener("DOMContentLoaded", () => {
@@ -118,6 +119,11 @@ this.addEventListener("DOMContentLoaded", () => {
         this.addEventListener("timeupdate", onTimeUpdate);
         this.addEventListener("seeked", generateThumbnail);
 
+    });
+
+    frames.addEventListener("scroll", function() {
+        framesProgressBar.style.width = frames.getBoundingClientRect().width * 
+            (this.scrollTop / this.scrollHeight);
     });
 
     function onTimeUpdate() {
@@ -176,6 +182,11 @@ this.addEventListener("DOMContentLoaded", () => {
 
                     frames.appendChild(thumbnail);
                 });
+
+                framesProgressBar = document.createElement("div");
+                framesProgressBar.id = "frames-progress";
+                frames.appendChild(framesProgressBar);
+
                 video.classList.add("visible");
 
                 toggleControlsButton.disabled = false;

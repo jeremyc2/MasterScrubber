@@ -88,6 +88,15 @@ progress::-webkit-progress-value {
 #frames > img:hover {
     border: solid gold 6px !important;
 }
+#frames-progress {
+    position: fixed;
+    bottom: 0px;
+    height: 2px;
+    background-color: white;
+    border-top: solid black 1px;
+    border-right: solid black 1px;
+    border-radius: 5px;
+}
 
 /* Video Controls */
 #controls {
