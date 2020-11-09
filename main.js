@@ -5,6 +5,7 @@ var input,
     frames,
     framesProgressBar,
     playbackSpeedSlider,
+    speedTooltip,
     toggleControlsButton,
     toggleFramesButton,
     downloadFrameButton,
@@ -80,6 +81,7 @@ this.addEventListener("DOMContentLoaded", () => {
     video = document.getElementById("vid");
     frames = document.getElementById("frames");
     playbackSpeedSlider = document.getElementById("playbackSpeed");
+    speedTooltip = document.getElementById("speed-tooltip");
     toggleControlsButton = document.getElementById("toggleControls");
     toggleFramesButton = document.getElementById("toggleFrames");
     downloadFrameButton = document.getElementById("downloadFrame");
@@ -105,6 +107,7 @@ this.addEventListener("DOMContentLoaded", () => {
     });
 
     playbackSpeedSlider.addEventListener('input', function() {
+        speedTooltip.innerText = `${this.value}x`;
         video.playbackRate = this.value;
     });
 

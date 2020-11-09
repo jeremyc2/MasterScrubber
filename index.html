@@ -6,7 +6,7 @@
 <progress max="100" value="0"></progress>
 <div id="controls">
     <input type="file" accept="video/*" />
-    <span>
+    <span class="tooltip">
         <input name="playbackSpeed" id="playbackSpeed" type="range" list="tickmarks" min="1" max="16" value="1" step="1">
         <datalist id="tickmarks">
             <option value="1"></option>
@@ -27,6 +27,7 @@
             <option value="16"></option>
           </datalist>
         <label for="playbackSpeed">Playback Speed</label>
+        <span class="tooltiptext" id="speed-tooltip">1x</span>
     </span>
     <button id="toggleFrames" class="tooltip" disabled>
         <span class="tooltiptext">Show/Hide Frames (F)</span>
