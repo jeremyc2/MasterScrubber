@@ -26,9 +26,12 @@ progress {
 
 }
 progress::-webkit-progress-bar {
-    background-color: #eee;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.75) inset;
+    background-color: hsl(0, 0%, 93%);
     border-radius: 10px;
+    overflow: hidden;
+}
+body.light progress::-webkit-progress-bar {
+    background-color: hsl(0, 0%, 7%);
 }
 progress::-webkit-progress-value {
     background-image:
