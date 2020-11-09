@@ -1,4 +1,8 @@
 /* Main */
+:root {
+    --blue: #226fbe;
+    --green: #76d275;
+}
 body {
     background-color: hsl(0 0% 5% / 1);
     min-width: 550px;
@@ -41,7 +45,7 @@ progress::-webkit-progress-value {
          -webkit-linear-gradient(top, 
                                  rgba(255, 255, 255, .25), 
                                  rgba(0, 0, 0, .25));
-    background-color: #226fbe;
+    background-color: var(--blue);
     border-radius: 10px;
     background-size: 95px 53px, 100% 100%;
 
@@ -109,9 +113,12 @@ progress::-webkit-progress-value {
     margin: auto;
 
     padding: 5px;
-    background-color: #76d275;
+    background-color: hsl(0, 0%, 90%);
     border-radius: 5px;
     margin-top: 4px;
+}
+body.light #controls {
+    background-color: hsl(0, 0%, 10%);
 }
 #controls * {
     padding: 5px;
@@ -119,7 +126,7 @@ progress::-webkit-progress-value {
     margin-left: 10px;
     margin-right: 10px;
     outline: none;
-    background-color: #226fbe;
+    background-color: var(--blue);
     color: #fff;
     border: none;
     min-width: 31.33px;
