@@ -148,6 +148,7 @@ span {
 #playbackSpeed {
     padding: 0px;
     position: relative;
+    margin-top: 3px;
 }
 label {
     position: relative;
@@ -175,7 +176,7 @@ label {
     background-image: url(./settings.svg);
     background-size: 22px;
     background-repeat: no-repeat;
-    background-position: right 5px bottom 3px;
+    background-position: right 5px bottom 4px;
 }
 #toggleControls:disabled {
     background-image: url(./settings-disabled.svg);
