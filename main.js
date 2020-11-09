@@ -46,7 +46,9 @@ function downloadCurrentFrame() {
 function toggleControls() {
     if (video.hasAttribute("controls")) {
         video.removeAttribute("controls"); 
+        toggleControlsButton.classList.remove("on");
     } else {
+        toggleControlsButton.classList.add("on");
         video.setAttribute("controls","controls");  
     }
 }
@@ -55,12 +57,14 @@ function toggleFrames() {
     if(frames.classList.contains("visible")) {
         framesOff();
     } else {
+        toggleFramesButton.classList.add("on");
         frames.classList.add("visible");
         focusCurrentFrame();
     }
 }
 function framesOff() {
     frames.classList.remove("visible");
+    toggleFramesButton.classList.remove("on");
 }
 
 function focusCurrentFrame(){

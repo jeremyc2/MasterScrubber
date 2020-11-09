@@ -1,7 +1,7 @@
 /* Main */
 :root {
-    --blue: #226fbe;
-    --green: #76d275;
+    --blue: hsl(210, 70%, 44%);
+    --green: hsl(119, 51%, 44%);
 }
 body {
     background-color: hsl(0 0% 5% / 1);
@@ -131,8 +131,14 @@ body.light #controls {
     border: none;
     min-width: 31.33px;
 }
+#controls button.on {
+    background-color: var(--green);
+}
 #controls button:hover:not([disabled]), #controls input:hover {
-    background-color: #174c82 !important;
+    background-color: hsl(210, 70%, 30%) !important;
+}
+#controls button.on:hover:not([disabled]) {
+    background-color: hsl(119, 51%, 30%) !important;
 }
 span {
     padding: 0px !important;
