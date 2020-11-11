@@ -136,6 +136,7 @@ body.light #controls {
 }
 #controls button:hover:not([disabled]), #controls input:hover {
     background-color: hsl(210, 70%, 30%) !important;
+    cursor: pointer;
 }
 #controls button.on:hover:not([disabled]) {
     background-color: hsl(119, 51%, 30%) !important;

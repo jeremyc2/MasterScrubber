@@ -9,6 +9,9 @@ var input,
     toggleControlsButton,
     toggleFramesButton,
     downloadFrameButton,
+    settingsModal,
+    themeCheckbox,
+    videoControlsCheckbox,
     canvas,
     context,
     thumbnails = [];
@@ -45,13 +48,7 @@ function downloadCurrentFrame() {
 }
 
 function toggleControls() {
-    if (video.hasAttribute("controls")) {
-        video.removeAttribute("controls"); 
-        toggleControlsButton.classList.remove("on");
-    } else {
-        toggleControlsButton.classList.add("on");
-        video.setAttribute("controls","controls");  
-    }
+    settingsModal.style.display = "block";
 }
 
 function toggleFrames() {
@@ -85,10 +82,20 @@ this.addEventListener("DOMContentLoaded", () => {
     toggleControlsButton = document.getElementById("toggleControls");
     toggleFramesButton = document.getElementById("toggleFrames");
     downloadFrameButton = document.getElementById("downloadFrame");
+    settingsModal = document.getElementById("settings-modal");
+    themeCheckbox = document.getElementById("dark-theme");
+    videoControlsCheckbox = document.getElementById("show-video-controls");
     canvas = document.getElementById("canvas");
     context = canvas.getContext('2d');
 
     var i;
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == settingsModal) {
+            settingsModal.style.display = "none";
+        }
+    }
 
     input.addEventListener('change', function() {
 
@@ -109,6 +116,20 @@ this.addEventListener("DOMContentLoaded", () => {
     playbackSpeedSlider.addEventListener('input', function() {
         speedTooltip.innerText = `${this.value}x`;
         video.playbackRate = this.value;
+    });
+
+    videoControlsCheckbox.addEventListener("change", function() {
+        if (this.checked) {
+            video.removeAttribute("controls"); 
+            toggleControlsButton.classList.remove("on");
+        } else {
+            toggleControlsButton.classList.add("on");
+            video.setAttribute("controls","controls");  
+        }
+    });
+
+    themeCheckbox.addEventListener("change", function() {
+        document.body.classList.toggle("light");
     });
 
     document.addEventListener('keydown', keyListener);

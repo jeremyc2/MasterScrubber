@@ -3,6 +3,7 @@
 <link rel="shortcut icon" href="icon.png" type="image/png">
 <link rel="stylesheet" href="normalize.css">
 <link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="modal.css">
 <script src="main.js"></script>
 <progress max="100" value="0"></progress>
 <div id="controls">
@@ -33,11 +34,11 @@
     <button id="toggleFrames" class="tooltip" disabled>
         <span class="tooltiptext">Show/Hide Frames (F)</span>
     </button>
-    <button id="toggleControls" class="tooltip on" disabled>
-        <span class="tooltiptext">Show/Hide Controls (C)</span>
-    </button>
     <button id="downloadFrame" class="tooltip" disabled>
         <span class="tooltiptext">Download Frame (D)</span>
+    </button>
+    <button id="toggleControls" class="tooltip" disabled>
+        <span class="tooltiptext">Show/Hide Controls (C)</span>
     </button>
 </div>
 <div class="container">
@@ -46,3 +47,21 @@
     <div id="frames"></div>
 </div>
 <a id="download" download="frame.png"></a>
+<div id="settings-modal" class="modal">
+
+    <div class="modal-content">
+        <span class="close" onclick="settingsModal.style.display = 'none'">&times;</span>
+        <h1 style="text-align: center;">Settings</h1>
+        <div style="width: 155px; margin: auto;">
+            <div>
+                <input type="checkbox" id="dark-theme" name="dark-theme" checked>
+                <label for="dark-theme">Dark Theme</label>
+            </div>
+            <div>
+                <input type="checkbox" id="show-video-controls" name="show-video-controls" checked>
+                <label for="show-video-controls">Show Video Controls</label>
+            </div>
+        </div>
+    </div>
+  
+</div>
