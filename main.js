@@ -26,12 +26,22 @@ function keyListener(e) {
             downloadCurrentFrame();
             e.preventDefault();
         }
-        else if(e.code == "KeyC") {
+        else if(e.code == "KeyS") {
             openSettings();
             e.preventDefault();
         }
+        else if(e.code == "KeyC") {
+            videoControlsCheckbox.checked ^= true;
+            if (video.hasAttribute("controls")) {
+                video.removeAttribute("controls"); 
+            } else {
+                video.setAttribute("controls","controls");  
+            }
+            e.preventDefault();
+        }
     }
-    if(e.code == "KeyL") {
+    if(e.code == "KeyT") {
+        themeCheckbox.checked ^= true;
         document.body.classList.toggle("light");
         e.preventDefault();
     }
@@ -48,7 +58,10 @@ function downloadCurrentFrame() {
 }
 
 function openSettings() {
-    settingsModal.style.display = "block";
+    if(settingsModal.style.display != "block")
+        settingsModal.style.display = "block";
+    else
+        settingsModal.style.display = "none";
 }
 
 function toggleFrames() {
