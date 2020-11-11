@@ -26,10 +26,6 @@ function keyListener(e) {
             downloadCurrentFrame();
             e.preventDefault();
         }
-        else if(e.code == "KeyS") {
-            openSettings();
-            e.preventDefault();
-        }
         else if(e.code == "KeyC") {
             videoControlsCheckbox.checked ^= true;
             if (video.hasAttribute("controls")) {
@@ -43,6 +39,10 @@ function keyListener(e) {
     if(e.code == "KeyT") {
         themeCheckbox.checked ^= true;
         document.body.classList.toggle("light");
+        e.preventDefault();
+    }
+    else if(e.code == "KeyS") {
+        openSettings();
         e.preventDefault();
     }
 }
@@ -114,7 +114,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
         i = 0;
 
-        openSettingsButton.disabled = true;
+        videoControlsCheckbox.disabled = true;
         toggleFramesButton.disabled = true;
         downloadFrameButton.disabled = true;
 
@@ -228,7 +228,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
                 video.classList.add("visible");
 
-                openSettingsButton.disabled = false;
+                videoControlsCheckbox.disabled = false;
                 toggleFramesButton.disabled = false;
                 downloadFrameButton.disabled = false;
 

@@ -37,8 +37,8 @@
     <button id="downloadFrame" class="tooltip" disabled>
         <span class="tooltiptext">Download Frame (D)</span>
     </button>
-    <button id="openSettings" class="tooltip" disabled>
-        <span class="tooltiptext">Show/Hide Controls (S)</span>
+    <button id="openSettings" class="tooltip">
+        <span class="tooltiptext">Open Settings (S)</span>
     </button>
 </div>
 <div class="container">
@@ -52,15 +52,24 @@
     <div class="modal-content">
         <span class="close" onclick="settingsModal.style.display = 'none'">&times;</span>
         <h1 style="text-align: center;">Settings</h1>
-        <div style="width: 155px; margin: auto;">
+        <div>
+            <h3>General</h3>
             <div>
                 <input type="checkbox" id="dark-theme" name="dark-theme" checked>
                 <label for="dark-theme">Dark Theme</label>
             </div>
             <div>
-                <input type="checkbox" id="show-video-controls" name="show-video-controls" checked>
+                <input type="checkbox" id="show-video-controls" name="show-video-controls" checked disabled>
                 <label for="show-video-controls">Show Video Controls</label>
             </div>
+        </div>
+        <div>
+            <h3>Keyboard Shortcuts</h3>
+            T - Toggle Theme<br>
+            F - Show/Hide Frames<br>
+            C - Show/Hide Video Controls<br>
+            D - Download Current Frame<br>
+            S - Open Settings<br>
         </div>
     </div>
   
