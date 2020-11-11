@@ -42,7 +42,7 @@ function keyListener(e) {
         e.preventDefault();
     }
     else if(e.code == "KeyS") {
-        openSettings();
+        toggleSettings();
         e.preventDefault();
     }
 }
@@ -57,7 +57,8 @@ function downloadCurrentFrame() {
     });
 }
 
-function openSettings() {
+function toggleSettings() {
+    openSettingsButton.classList.toggle("on");
     if(settingsModal.style.display != "block")
         settingsModal.style.display = "block";
     else
@@ -106,7 +107,7 @@ this.addEventListener("DOMContentLoaded", () => {
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == settingsModal) {
-            settingsModal.style.display = "none";
+            toggleSettings();
         }
     }
 
@@ -145,7 +146,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener('keydown', keyListener);
 
-    openSettingsButton.addEventListener("click", openSettings);
+    openSettingsButton.addEventListener("click", toggleSettings);
     toggleFramesButton.addEventListener("click", toggleFrames);
     downloadFrameButton.addEventListener("click", downloadCurrentFrame);
 
