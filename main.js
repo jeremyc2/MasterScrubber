@@ -6,7 +6,7 @@ var input,
     framesProgressBar,
     playbackSpeedSlider,
     speedTooltip,
-    toggleControlsButton,
+    openSettingsButton,
     toggleFramesButton,
     downloadFrameButton,
     settingsModal,
@@ -27,7 +27,7 @@ function keyListener(e) {
             e.preventDefault();
         }
         else if(e.code == "KeyC") {
-            toggleControls();
+            openSettings();
             e.preventDefault();
         }
     }
@@ -47,7 +47,7 @@ function downloadCurrentFrame() {
     });
 }
 
-function toggleControls() {
+function openSettings() {
     settingsModal.style.display = "block";
 }
 
@@ -79,7 +79,7 @@ this.addEventListener("DOMContentLoaded", () => {
     frames = document.getElementById("frames");
     playbackSpeedSlider = document.getElementById("playbackSpeed");
     speedTooltip = document.getElementById("speed-tooltip");
-    toggleControlsButton = document.getElementById("toggleControls");
+    openSettingsButton = document.getElementById("openSettings");
     toggleFramesButton = document.getElementById("toggleFrames");
     downloadFrameButton = document.getElementById("downloadFrame");
     settingsModal = document.getElementById("settings-modal");
@@ -101,7 +101,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
         i = 0;
 
-        toggleControlsButton.disabled = true;
+        openSettingsButton.disabled = true;
         toggleFramesButton.disabled = true;
         downloadFrameButton.disabled = true;
 
@@ -119,11 +119,9 @@ this.addEventListener("DOMContentLoaded", () => {
     });
 
     videoControlsCheckbox.addEventListener("change", function() {
-        if (this.checked) {
+        if (!this.checked) {
             video.removeAttribute("controls"); 
-            toggleControlsButton.classList.remove("on");
         } else {
-            toggleControlsButton.classList.add("on");
             video.setAttribute("controls","controls");  
         }
     });
@@ -134,7 +132,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener('keydown', keyListener);
 
-    toggleControlsButton.addEventListener("click", toggleControls);
+    openSettingsButton.addEventListener("click", openSettings);
     toggleFramesButton.addEventListener("click", toggleFrames);
     downloadFrameButton.addEventListener("click", downloadCurrentFrame);
 
@@ -217,7 +215,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
                 video.classList.add("visible");
 
-                toggleControlsButton.disabled = false;
+                openSettingsButton.disabled = false;
                 toggleFramesButton.disabled = false;
                 downloadFrameButton.disabled = false;
 
