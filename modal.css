@@ -17,10 +17,10 @@
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 12px;
   border: 1px solid #888;
   width: 300px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 /* The Close Button */
@@ -30,7 +30,7 @@
   font-size: 28px;
   font-weight: bold;
   position: relative;
-  top: -12px;
+  top: -10px;
 }
 
 .close:hover,
@@ -38,4 +38,18 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.modal-content > div > div {
+  background-color: hsl(0, 0%, 90%);
+  border-radius: 5px;
+
+  padding: 10px;
+  font-family: monospace;
+  font-size: larger;
+}
+
+.modal h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
