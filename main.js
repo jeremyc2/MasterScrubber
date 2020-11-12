@@ -1,5 +1,5 @@
 var input,
-    isLoading = true,
+    isLoading,
     progress,
     video,
     frames,
@@ -15,6 +15,29 @@ var input,
     canvas,
     context,
     thumbnails = [];
+
+const animateCSS = (node, animation, callback) =>
+    // We create a Promise and return it
+    new Promise((resolve) => {
+
+      const prefix = 'animate__';
+
+      const animationName = `${prefix}${animation}`;
+  
+      node.classList.add(`${prefix}animated`, animationName);
+  
+      // When the animation ends, we clean the classes and resolve the Promise
+      function handleAnimationEnd() {
+        node.classList.remove(`${prefix}animated`, animationName);
+
+        if(callback != null)
+            callback();
+
+        resolve('Animation ended');
+      }
+  
+      node.addEventListener('animationend', handleAnimationEnd, {once: true});
+    });
 
 function keyListener(e) {
     if(!isLoading) {
@@ -58,11 +81,16 @@ function downloadCurrentFrame() {
 }
 
 function toggleSettings() {
-    openSettingsButton.classList.toggle("on");
-    if(settingsModal.style.display != "block")
+    if(settingsModal.style.display != "block") {
+        openSettingsButton.classList.add("on");
+        animateCSS(settingsModal.querySelector(".modal-content"), "backInUp");
         settingsModal.style.display = "block";
-    else
-        settingsModal.style.display = "none";
+    }
+    else {
+        openSettingsButton.classList.remove("on");
+        animateCSS(settingsModal.querySelector(".modal-content"), "backOutDown", 
+            () => settingsModal.style.display = "none");
+    }
 }
 
 function toggleFrames() {
@@ -113,7 +141,14 @@ this.addEventListener("DOMContentLoaded", () => {
 
     input.addEventListener('change', function() {
 
+        if(this.files.length == 0)
+            return;
+
+        isLoading = true;
         i = 0;
+
+        video.classList.remove("visible");
+        video.removeEventListener("timeupdate", onTimeUpdate);
 
         videoControlsCheckbox.disabled = true;
         toggleFramesButton.disabled = true;
@@ -122,7 +157,6 @@ this.addEventListener("DOMContentLoaded", () => {
         framesOff();
         frames.innerHTML = "";
         thumbnails = [];
-        video.classList.remove("visible");
 
         video.src = URL.createObjectURL(this.files[0]);
     });
@@ -150,14 +184,17 @@ this.addEventListener("DOMContentLoaded", () => {
     toggleFramesButton.addEventListener("click", toggleFrames);
     downloadFrameButton.addEventListener("click", downloadCurrentFrame);
 
-    video.addEventListener('loadedmetadata', function() {
-        progress.classList.add("visible");
+    video.addEventListener('loadeddata', function() {
+
         this.currentTime = i;
         canvas.width = this.videoWidth;
         canvas.height = this.videoHeight;
 
         this.addEventListener("timeupdate", onTimeUpdate);
         this.addEventListener("seeked", generateThumbnail);
+
+        progress.value = 0;
+        progress.classList.add("visible");
 
     });
 
@@ -217,7 +254,7 @@ this.addEventListener("DOMContentLoaded", () => {
 
                     thumbnail.addEventListener("click", function() {
                         updateVideoTime(parseInt(this.getAttribute("data-index")));
-                        frames.classList.remove("visible");
+                        framesOff();
                     });
 
                     frames.appendChild(thumbnail);
