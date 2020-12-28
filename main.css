@@ -63,7 +63,7 @@ progress::-webkit-progress-value {
     left: 50%;
     transform: translateX(-50%);
 }
-#vid {
+#vid, #temp-vid {
     max-width: 100%;
     max-height: calc(100vh - 56px);
     visibility: hidden;
