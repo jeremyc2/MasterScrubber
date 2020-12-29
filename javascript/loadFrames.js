@@ -88,7 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
         canvas.height = this.videoHeight;
 
         this.addEventListener("timeupdate", function updateProgress() {
-            if(isLoading)
+
+            if(tempVideo.duration == 0)
                 return;
 
             var percent = (tempVideo.currentTime / tempVideo.duration) * 100;
