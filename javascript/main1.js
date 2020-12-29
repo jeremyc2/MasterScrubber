@@ -105,6 +105,9 @@ function framesOff() {
 }
 
 function focusCurrentFrame(){
+    if(isLoading)
+        return;
+        
     var frameNumber = Math.floor(video.currentTime / 5);
     document.querySelector(`#thumbnail${frameNumber}`).focus();
     frames.scrollTop = Math.floor(frameNumber / 3) * 
