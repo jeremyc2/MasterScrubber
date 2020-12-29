@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         context.drawImage(tempVideo, 0, 0);
         canvas.toBlob(blob => {
+
+            if(!ifLoading)
+                return;
+                
             thumbnails.push(URL.createObjectURL(blob));
 
             // when frame is captured increase, here by 5 seconds
@@ -60,6 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
         i = 0;
 
         video.classList.add("visible");
+
+        progress.value = 0;
+        progress.classList.add("visible");
         
         downloadFrameButton.disabled = true;
         toggleFramesButton.disabled = false;
@@ -94,9 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
             progress.value = percent;
 
         });
-
-        progress.value = 0;
-        progress.classList.add("visible");
 
     });
 
