@@ -1,4 +1,4 @@
-var input, progress, video, frames, playbackSpeedSlider, speedTooltip, 
+var input, progress, video, tempVideo, frames, playbackSpeedSlider, speedTooltip, 
     openSettingsButton, toggleFramesButton, downloadFrameButton, 
     settingsModal, themeCheckbox, videoControlsCheckbox,
     canvas, context, framesProgressBar;
@@ -129,6 +129,7 @@ function findElements(){
     input = document.querySelector('input');
     progress = document.querySelector('progress');
     video = document.getElementById("vid");
+    tempVideo = document.getElementById("temp-vid");
     frames = document.getElementById("frames");
     playbackSpeedSlider = document.getElementById("playbackSpeed");
     speedTooltip = document.getElementById("speed-tooltip");
