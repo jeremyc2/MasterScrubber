@@ -1,7 +1,7 @@
-var input, progress, video, tempVideo, frames, playbackSpeedSlider, speedTooltip, 
-    openSettingsButton, toggleFramesButton, downloadFrameButton, 
-    settingsModal, themeCheckbox, videoControlsCheckbox,
-    canvas, context, framesProgressBar;
+var input, progress, video, tempVideo, frames, framesProgressBar, 
+    playbackSpeedSlider, speedTooltip, openSettingsButton, toggleFramesButton, 
+    downloadFrameButton, settingsModal, themeCheckbox, videoControlsCheckbox,
+    canvas, context;
 
 document.addEventListener("DOMContentLoaded", () => {
     findElements();
@@ -134,6 +134,7 @@ function findElements(){
     video = document.getElementById("vid");
     tempVideo = document.getElementById("temp-vid");
     frames = document.getElementById("frames");
+    framesProgressBar = document.getElementById("frames-progress");
     playbackSpeedSlider = document.getElementById("playbackSpeed");
     speedTooltip = document.getElementById("speed-tooltip");
     openSettingsButton = document.getElementById("openSettings");

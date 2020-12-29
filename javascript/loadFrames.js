@@ -44,10 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     frames.appendChild(thumbnail);
                 });
 
-                framesProgressBar = document.createElement("div");
-                framesProgressBar.id = "frames-progress";
-                frames.appendChild(framesProgressBar);
-
                 downloadFrameButton.disabled = false;
 
             }
@@ -69,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleFramesButton.disabled = false;
 
         framesOff();
-        
+
         [...document.querySelectorAll("#frames > img")].forEach(el => {
             el.parentNode.removeChild(el);
         });
