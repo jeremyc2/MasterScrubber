@@ -68,7 +68,12 @@ progress::-webkit-progress-value {
     max-height: calc(100vh - 56px);
     visibility: hidden;
 }
-.visible {
+
+.visible:not(progress) {
+    visibility: visible !important;
+}
+
+#frames.visible progress.visible {
     visibility: visible !important;
 }
 
