@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         this.addEventListener("timeupdate", function updateProgress() {
 
-            if(tempVideo.duration == 0 | tempVideo.duration == NaN)
+            if(isNaN(tempVideo.duration) | tempVideo.duration == 0)
                 return;
 
             var percent = (tempVideo.currentTime / tempVideo.duration) * 100;
