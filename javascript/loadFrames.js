@@ -48,8 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 framesProgressBar.id = "frames-progress";
                 frames.appendChild(framesProgressBar);
 
-                video.classList.add("visible");
-
                 videoControlsCheckbox.disabled = false;
                 toggleFramesButton.disabled = false;
                 downloadFrameButton.disabled = false;
@@ -67,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         isLoading = true;
         i = 0;
 
-        video.classList.remove("visible");
+        video.classList.add("visible");
         
         videoControlsCheckbox.disabled = true;
         toggleFramesButton.disabled = true;
@@ -92,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         this.addEventListener("timeupdate", function updateProgress() {
             if(isLoading)
                 return;
-                
+
             var percent = (tempVideo.currentTime / tempVideo.duration) * 100;
             progress.value = percent;
         });
