@@ -48,8 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     frames.appendChild(thumbnail);
                 });
 
-                downloadFrameButton.disabled = false;
-
             }
 
         }, 'image/jpeg');
@@ -90,6 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
         this.currentTime = i;
         canvas.width = this.videoWidth;
         canvas.height = this.videoHeight;
+
+        downloadFrameButton.disabled = false;
 
         this.addEventListener("timeupdate", function updateProgress() {
 
