@@ -8,7 +8,6 @@
 <script src="javascript/animate.js"></script>
 <script src="javascript/main1.js"></script>
 <script src="javascript/loadFrames.js"></script>
-<progress max="100" value="0"></progress>
 <div id="controls">
     <input type="file" accept="video/*" />
     <span class="tooltip">
@@ -47,7 +46,9 @@
 <div class="container">
     <video id="vid" controls></video>
     <canvas id="canvas"></canvas>
-    <div id="frames"></div>
+    <div id="frames">
+        <progress max="100" value="0"></progress>
+    </div>
 </div>
 <a id="download" download="frame.png"></a>
 <div id="settings-modal" class="modal">
@@ -63,7 +64,7 @@
                     <label for="dark-theme">Dark Theme</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="show-video-controls" name="show-video-controls" checked disabled>
+                    <input type="checkbox" id="show-video-controls" name="show-video-controls" checked>
                     <label for="show-video-controls">Show Video Controls</label>
                 </div>
             </div>

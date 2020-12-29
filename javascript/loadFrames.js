@@ -48,8 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 framesProgressBar.id = "frames-progress";
                 frames.appendChild(framesProgressBar);
 
-                videoControlsCheckbox.disabled = false;
-                toggleFramesButton.disabled = false;
                 downloadFrameButton.disabled = false;
 
             }
@@ -67,12 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         video.classList.add("visible");
         
-        videoControlsCheckbox.disabled = true;
-        toggleFramesButton.disabled = true;
         downloadFrameButton.disabled = true;
+        toggleFramesButton.disabled = false;
 
         framesOff();
-        frames.innerHTML = "";
+        
+        [...document.querySelectorAll("#frames > img")].forEach(el => {
+            el.parentNode.removeChild(el);
+        });
+
         thumbnails = [];
 
         var url = URL.createObjectURL(this.files[0]);
