@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         context.drawImage(tempVideo, 0, 0);
         canvas.toBlob(blob => {
 
-            if(!ifLoading)
+            if(!isLoading)
                 return;
                 
             thumbnails.push(URL.createObjectURL(blob));
