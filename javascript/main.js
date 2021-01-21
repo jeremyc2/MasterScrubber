@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
     downloadFrameButton.addEventListener("click", downloadCurrentFrame);
 
     frames.addEventListener("scroll", function() {
-        framesProgressBar.style.width = frames.getBoundingClientRect().width * 
-            (this.scrollTop / this.scrollHeight) * 1.06;
+        framesProgressBar.style.width = this.getBoundingClientRect().width * 
+            this.scrollTop / (this.scrollHeight - this.getBoundingClientRect().height);
     });
 
     video.addEventListener("timeupdate", focusCurrentFrame);
